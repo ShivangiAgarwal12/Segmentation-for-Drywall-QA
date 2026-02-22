@@ -135,10 +135,10 @@ def train_one_seed(seed, device, epochs=EPOCHS, lr=LR, batch_size=BATCH_SIZE):
             torch.save(model.state_dict(), best_path)
             print(f"Best model saved! IoU: {best_iou:.4f}")
 
-        # Always save last checkpoint
+        
         torch.save(model.state_dict(), last_path)
 
-        # Save history after every epoch
+        # Saves history after every epoch
         epoch_time = time.time() - t0
         history['train_loss'].append(train_loss)
         history['val_loss'].append(val_loss)

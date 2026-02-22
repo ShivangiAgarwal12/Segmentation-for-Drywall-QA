@@ -80,7 +80,7 @@ else:
 
 
 
-#  STEP 2 — EVALUATE BEST SEED
+#  EVALUATE BEST SEED
 
 if RUN_EVALUATION and best_seed is not None:
     best_ckpt = os.path.join(CHECKPOINTS_DIR, f"seed_{best_seed}", "clipseg_best.pt")

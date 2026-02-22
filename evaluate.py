@@ -11,7 +11,7 @@ from utils import compute_metrics
 
 def evaluate(model, processor, dataloader, device):
     """
-    Run evaluation on a dataloader.
+    Runs evaluation on a dataloader.
     Returns per-class and overall mIoU and Dice scores.
     """
     model.eval()
