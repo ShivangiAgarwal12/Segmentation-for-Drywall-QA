@@ -107,6 +107,9 @@ drywall-qa/
 Colab Notebook
 └── Origin_segmentation.ipynb #File to download data, results saved post each cell
 └── Drywall_QA.ipynb #Loads data, trains for 3 seeds, evaluates dataset also
+Examples
+└──Prediction_cracks # few examples of predicted images
+└── Predicton_taping 
 ```
 
 ---
