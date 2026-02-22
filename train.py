@@ -1,6 +1,5 @@
-# ============================================================
 #  train.py — Training loop for one seed
-# ============================================================
+
 
 import os
 import json
@@ -41,7 +40,7 @@ def train_one_seed(seed, device, epochs=EPOCHS, lr=LR, batch_size=BATCH_SIZE):
     hist_path = os.path.join(ckpt_dir, "history.json")
 
     print(f"\n{'='*60}")
-    print(f"🌱 Training — SEED {seed} | Epochs: {epochs} | LR: {lr} | Batch: {batch_size}")
+    print(f"Training — SEED {seed} | Epochs: {epochs} | LR: {lr} | Batch: {batch_size}")
     print(f"{'='*60}")
 
     # DataLoaders
@@ -69,7 +68,7 @@ def train_one_seed(seed, device, epochs=EPOCHS, lr=LR, batch_size=BATCH_SIZE):
             history = json.load(f)
         start_epoch = len(history['train_loss'])
         best_iou    = max(history['val_iou']) if history['val_iou'] else 0.0
-        print(f"📂 Resuming from epoch {start_epoch + 1} (best IoU: {best_iou:.4f})")
+        print(f"Resuming from epoch {start_epoch + 1} (best IoU: {best_iou:.4f})")
     else:
         history = {
             'train_loss': [], 'val_loss': [],
@@ -79,7 +78,7 @@ def train_one_seed(seed, device, epochs=EPOCHS, lr=LR, batch_size=BATCH_SIZE):
         start_epoch = 0
         best_iou    = 0.0
 
-    # ── Training loop ────────────────────────────────────────
+    # Training loop
     for epoch in range(start_epoch, epochs):
         t0 = time.time()
         print_vram()
@@ -134,7 +133,7 @@ def train_one_seed(seed, device, epochs=EPOCHS, lr=LR, batch_size=BATCH_SIZE):
         if val_iou > best_iou:
             best_iou = val_iou
             torch.save(model.state_dict(), best_path)
-            print(f"   💾 Best model saved! IoU: {best_iou:.4f}")
+            print(f"Best model saved! IoU: {best_iou:.4f}")
 
         # Always save last checkpoint
         torch.save(model.state_dict(), last_path)
@@ -157,5 +156,5 @@ def train_one_seed(seed, device, epochs=EPOCHS, lr=LR, batch_size=BATCH_SIZE):
               f"Val Dice: {val_dice:.4f} | "
               f"Time: {epoch_time:.1f}s")
 
-    print(f"\n✅ Seed {seed} done! Best IoU: {best_iou:.4f}")
+    print(f"\n Seed {seed} done! Best IoU: {best_iou:.4f}")
     return history, best_iou

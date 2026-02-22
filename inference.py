@@ -1,6 +1,5 @@
-# ============================================================
 #  inference.py — Save prediction masks with random prompts
-# ============================================================
+
 
 import os
 import json
@@ -83,6 +82,6 @@ def save_predictions(model, processor, imgs_dir, masks_dir,
     with open(meta_path, 'w') as f:
         json.dump(saved_meta, f, indent=2)
 
-    print(f"✅ Saved {len(saved_meta)} masks → {output_dir}")
-    print(f"📋 Metadata → {meta_path}")
+    print(f"Saved {len(saved_meta)} masks → {output_dir}")
+    print(f" Metadata → {meta_path}")
     return saved_meta

@@ -1,6 +1,5 @@
-# ============================================================
 #  dataset.py — PyTorch Dataset for Drywall QA
-# ============================================================
+
 
 import os
 import random
@@ -53,7 +52,7 @@ class DrywallDataset(Dataset):
 
         taping = sum(1 for s in self.samples if s['label'] == 'taping')
         crack  = sum(1 for s in self.samples if s['label'] == 'crack')
-        print(f"✅ Dataset loaded — taping: {taping} | crack: {crack} | total: {len(self.samples)}")
+        print(f"Dataset loaded — taping: {taping} | crack: {crack} | total: {len(self.samples)}")
 
     def __len__(self):
         return len(self.samples)
@@ -93,5 +92,5 @@ def get_dataloaders(d1_train_imgs, d1_train_masks,
     valid_loader = DataLoader(valid_ds, batch_size=batch_size,
                               shuffle=False, num_workers=2, pin_memory=True)
 
-    print(f"✅ Train batches: {len(train_loader)} | Valid batches: {len(valid_loader)}")
+    print(f"Train batches: {len(train_loader)} | Valid batches: {len(valid_loader)}")
     return train_loader, valid_loader

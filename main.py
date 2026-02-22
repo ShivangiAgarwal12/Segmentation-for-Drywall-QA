@@ -1,22 +1,21 @@
-# ============================================================
 #  main.py — Entry point for Drywall QA Segmentation
 #
 #  Usage (Google Colab):
 #    Run each section by setting the RUN_* flags below
-# ============================================================
+
 
 import os
 import json
 import torch
 
-# ── Config ───────────────────────────────────────────────────
+# Config 
 from config import (
     SEEDS, EPOCHS, BATCH_SIZE, LR, CHECKPOINTS_DIR, PREDICTIONS_DIR,
     D1_VALID_IMGS, D1_VALID_MASKS,
     D2_VALID_IMGS, D2_VALID_MASKS,
 )
 
-# ── Modules ──────────────────────────────────────────────────
+#  Modules
 from utils      import set_seed, makedirs
 from model      import load_model
 from dataset    import get_dataloaders
@@ -25,22 +24,22 @@ from evaluate   import evaluate, print_results
 from inference  import save_predictions
 from visualize  import plot_training_curves, visualize_random_examples
 
-# ── Flags — set True/False to control what runs ──────────────
+# Flags — set True/False to control what runs 
 RUN_TRAINING   = True
 RUN_EVALUATION = True
 RUN_INFERENCE  = True
 RUN_VISUALIZE  = True
 
-# ─────────────────────────────────────────────────────────────
+
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f"Device: {DEVICE}")
 makedirs(CHECKPOINTS_DIR, PREDICTIONS_DIR)
 
 
-# ══════════════════════════════════════════════════════════════
+
 #  TRAIN ACROSS ALL SEEDS
-# ══════════════════════════════════════════════════════════════
+
 all_results = {}
 
 if RUN_TRAINING:
@@ -80,9 +79,9 @@ else:
     print(f"\n Best seed found: {best_seed}  (IoU: {best_iou:.4f})")
 
 
-# ══════════════════════════════════════════════════════════════
+
 #  STEP 2 — EVALUATE BEST SEED
-# ══════════════════════════════════════════════════════════════
+
 if RUN_EVALUATION and best_seed is not None:
     best_ckpt = os.path.join(CHECKPOINTS_DIR, f"seed_{best_seed}", "clipseg_best.pt")
     processor, model = load_model(DEVICE, checkpoint_path=best_ckpt)
@@ -102,9 +101,9 @@ if RUN_EVALUATION and best_seed is not None:
     metrics  = print_results(results, seed=best_seed)
 
 
-# ══════════════════════════════════════════════════════════════
+
 #  SAVE PREDICTION MASKS
-# ══════════════════════════════════════════════════════════════
+
 if RUN_INFERENCE and best_seed is not None:
     if not RUN_EVALUATION:
         # Load model if evaluation was skipped
@@ -130,9 +129,8 @@ if RUN_INFERENCE and best_seed is not None:
     )
 
 
-# ══════════════════════════════════════════════════════════════
 #  VISUALIZE
-# ══════════════════════════════════════════════════════════════
+
 if RUN_VISUALIZE:
     # Training curves for all seeds
     plot_training_curves(seeds=SEEDS)

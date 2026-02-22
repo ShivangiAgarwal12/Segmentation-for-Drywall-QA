@@ -1,6 +1,5 @@
-# ============================================================
 #  evaluate.py — Per-class evaluation on validation set
-# ============================================================
+
 
 import numpy as np
 import torch
@@ -45,7 +44,6 @@ def evaluate(model, processor, dataloader, device):
 
 
 def print_results(results, seed=None):
-    """Pretty-print evaluation results table."""
     header = f"EVALUATION RESULTS" + (f"  (Seed: {seed})" if seed else "")
     print("\n" + "=" * 55)
     print(f"   {header}")

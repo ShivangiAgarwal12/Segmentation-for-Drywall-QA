@@ -1,6 +1,6 @@
-# ============================================================
+
 #  utils.py — Loss functions, metrics, and helper utilities
-# ============================================================
+
 
 import os
 import random
@@ -11,7 +11,7 @@ import torch.nn.functional as F
 from config import THRESHOLD
 
 
-# ── Seed ────────────────────────────────────────────────────
+# Seed 
 
 def set_seed(seed):
     random.seed(seed)
@@ -19,10 +19,10 @@ def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
-    print(f"🌱 Seed set: {seed}")
+    print(f" Seed set: {seed}")
 
 
-# ── Loss ────────────────────────────────────────────────────
+# Loss 
 
 def dice_loss(pred, target, smooth=1.0):
     """Soft Dice loss — works with raw logits via sigmoid."""
@@ -44,11 +44,11 @@ def bce_dice_loss(pred, target):
     return bce + dice
 
 
-# ── Metrics ─────────────────────────────────────────────────
+# Metrics 
 
 def compute_metrics(pred, target, threshold=THRESHOLD):
     """
-    Compute IoU and Dice score from raw logits and binary target mask.
+    Computes IoU and Dice score from raw logits and binary target mask.
     Returns: (iou, dice) as Python floats
     """
     pred = torch.sigmoid(pred)
@@ -66,7 +66,7 @@ def compute_metrics(pred, target, threshold=THRESHOLD):
     return iou.item(), dice.item()
 
 
-# ── VRAM ────────────────────────────────────────────────────
+# VRAM 
 
 def print_vram():
     """Print current GPU memory usage."""
@@ -76,12 +76,12 @@ def print_vram():
     allocated = torch.cuda.memory_allocated() / 1024**3
     reserved  = torch.cuda.memory_reserved()  / 1024**3
     total     = torch.cuda.get_device_properties(0).total_memory / 1024**3
-    print(f"🖥️  VRAM — Allocated: {allocated:.1f}GB | "
+    print(f" VRAM — Allocated: {allocated:.1f}GB | "
           f"Reserved: {reserved:.1f}GB | "
           f"Free: {total - reserved:.1f}GB / {total:.1f}GB")
 
 
-# ── Directory helpers ────────────────────────────────────────
+# Directory helpers 
 
 def makedirs(*paths):
     for p in paths:

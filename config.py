@@ -1,25 +1,24 @@
-# ============================================================
 #  config.py — All hyperparameters and paths in one place
 #  Change anything here; the rest of the code reads from this
-# ============================================================
+
 
 import os
 
-# ── Reproducibility ─────────────────────────────────────────
+# Reproducibility
 SEEDS = [42, 123, 7]          # Seeds to train across
 
-# ── Model ───────────────────────────────────────────────────
+# Model
 MODEL_NAME = "CIDAS/clipseg-rd64-refined"
 IMAGE_SIZE = 352               # Input resolution fed to CLIPSeg
 
-# ── Training ────────────────────────────────────────────────
+# Training
 EPOCHS      = 10
 BATCH_SIZE  = 16
 LR          = 1e-4
 WEIGHT_DECAY= 1e-4
 THRESHOLD   = 0.5              # Sigmoid threshold for binary mask
 
-# ── Prompts ─────────────────────────────────────────────────
+# Prompts 
 PROMPTS = {
     'taping': [
         "segment taping area",
@@ -35,8 +34,7 @@ PROMPTS = {
     ]
 }
 
-# ── Paths ────────────────────────────────────────────────────
-# Base directory — override with env var if needed
+# Paths
 BASE = os.environ.get("DRYWALL_BASE", "/content/drive/MyDrive/drywall-qa")
 
 # Dataset 1 — Taping

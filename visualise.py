@@ -1,6 +1,5 @@
-# ============================================================
 #  visualize.py — Plot training curves and prediction examples
-# ============================================================
+
 
 import os
 import json
@@ -24,7 +23,7 @@ def plot_training_curves(seeds, save_path=None):
     for i, seed in enumerate(seeds):
         hist_path = os.path.join(CHECKPOINTS_DIR, f"seed_{seed}", "history.json")
         if not os.path.exists(hist_path):
-            print(f"⚠️  No history found for seed {seed} — skipping")
+            print(f" No history found for seed {seed} — skipping")
             continue
 
         with open(hist_path) as f:
@@ -59,7 +58,7 @@ def plot_training_curves(seeds, save_path=None):
     out = save_path or os.path.join(CHECKPOINTS_DIR, "all_seeds_curves.png")
     plt.savefig(out, dpi=150, bbox_inches='tight')
     plt.show()
-    print(f"✅ Training curves saved → {out}")
+    print(f" Training curves saved → {out}")
 
 
 def visualize_random_examples(imgs_dir, masks_dir, pred_dir,
@@ -113,4 +112,4 @@ def visualize_random_examples(imgs_dir, masks_dir, pred_dir,
     out = save_path or os.path.join(PREDICTIONS_DIR, f"{label}_random_examples.png")
     plt.savefig(out, dpi=150, bbox_inches='tight')
     plt.show()
-    print(f"✅ Saved {plotted} examples → {out}")
+    print(f"Saved {plotted} examples → {out}")
