@@ -17,7 +17,7 @@ prompt, produces a binary mask highlighting the region of interest.
 | Crack | 0.5942 | 0.7345 | 248 |
 | **Overall** | **0.5776** | **0.7201** | **498** |
 
-> Best seed: **123** — trained across seeds 42, 123, 7
+> Best seed: **123** - trained across seeds 42, 123, 7
      
 ---
 
@@ -53,7 +53,7 @@ on the drywall datasets.
 
 > Both datasets were originally object-detection format (bounding boxes).
 > Boxes were converted to filled binary masks.
-> Dataset 2 had no validation split — manually split 80/20 with `seed=42`.
+> Dataset 2 had no validation split, manually split 80/20 with `seed=123`.
 
 ---
 
@@ -94,7 +94,7 @@ PROMPTS = {
 
 ```
 drywall-qa/
-├── main.py            # Entry point — controls all steps via flags
+├── main.py            # Entry point, controls all steps via flags
 ├── config.py          # All hyperparameters and paths in one place
 ├── dataset.py         # PyTorch Dataset class + DataLoader builder
 ├── model.py           # CLIPSeg loading and checkpoint handling
@@ -105,10 +105,10 @@ drywall-qa/
 ├── requirements.txt
 └── .gitignore
 Colab Notebook
-└── Origin_segmentation.ipynb #File to download data, results saved post each cell
-└── Drywall_QA.ipynb    # Loads data, trains for 3 seeds, evaluates dataset also
+└── Origin_segmentation.ipynb   # File to download data, results saved post each cell
+└── Drywall_QA.ipynb            # Loads data, trains for 3 seeds, evaluates dataset also
 Examples
-└──Prediction_cracks    # few examples of predicted images
+└──Prediction_cracks            # few examples of predicted images
 └── Predicton_taping 
 Report
 └── Prompted_Segmentation_for_Drywall_QA.pdf    # Final report with all results
@@ -134,12 +134,12 @@ BASE = "/content/drive/MyDrive/drywall-qa"  # Google Colab
 from roboflow import Roboflow
 rf = Roboflow(api_key="YOUR_API_KEY")
 
-# Dataset 1 — Taping
+# Dataset 1 - Taping
 rf.workspace("objectdetect-pu6rn").project("drywall-join-detect").version(1).download(
     "coco", location=f"{BASE}/data/dataset1_taping_raw"
 )
 
-# Dataset 2 — Cracks
+# Dataset 2 - Cracks
 rf.workspace("university-bswxt").project("crack-bphdr").version(2).download(
     "coco", location=f"{BASE}/data/dataset2_cracks_raw"
 )
@@ -147,7 +147,7 @@ rf.workspace("university-bswxt").project("crack-bphdr").version(2).download(
 
 ### 4. Run everything
 ```python
-# In main.py — set which steps to run
+# In main.py - set which steps to run
 RUN_TRAINING   = True
 RUN_EVALUATION = True
 RUN_INFERENCE  = True
@@ -236,5 +236,5 @@ Each seed saves to its own folder: `checkpoints/seed_{seed}/`
 - Lüddecke & Ecker (2022). *Image Segmentation Using Text and Image Prompts*. CVPR.
 - Radford et al. (2021). *Learning Transferable Visual Models From Natural Language Supervision*. ICML.
 - [CLIPSeg on Hugging Face](https://huggingface.co/CIDAS/clipseg-rd64-refined)
-- [Drywall Join Detect — Roboflow](https://universe.roboflow.com/objectdetect-pu6rn/drywall-join-detect)
-- [Crack Detection — Roboflow](https://universe.roboflow.com/university-bswxt/crack-bphdr)
+- [Drywall Join Detect - Roboflow](https://universe.roboflow.com/objectdetect-pu6rn/drywall-join-detect)
+- [Crack Detection - Roboflow](https://universe.roboflow.com/university-bswxt/crack-bphdr)
