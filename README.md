@@ -13,12 +13,12 @@ prompt, produces a binary mask highlighting the region of interest.
 
 | Class | mIoU | Dice | Samples |
 |-------|------|------|---------|
-| Taping | 0.5287 | 0.6789 | 250 |
-| Crack | 0.5771 | 0.7216 | 248 |
-| **Overall** | **0.5528** | **0.7002** | **498** |
+| Taping | 0.5611 | 0.7059 | 250 |
+| Crack | 0.5942 | 0.7345 | 248 |
+| **Overall** | **0.5776** | **0.7201** | **498** |
 
-> Best seed: **42** — trained across seeds 42, 123, 7
-
+> Best seed: **123** — trained across seeds 42, 123, 7
+     
 ---
 
 ## Model
@@ -106,10 +106,12 @@ drywall-qa/
 └── .gitignore
 Colab Notebook
 └── Origin_segmentation.ipynb #File to download data, results saved post each cell
-└── Drywall_QA.ipynb #Loads data, trains for 3 seeds, evaluates dataset also
+└── Drywall_QA.ipynb    # Loads data, trains for 3 seeds, evaluates dataset also
 Examples
-└──Prediction_cracks # few examples of predicted images
+└──Prediction_cracks    # few examples of predicted images
 └── Predicton_taping 
+Report
+└── Prompted_Segmentation_for_Drywall_QA.pdf    # Final report with all results
 ```
 
 ---
@@ -222,10 +224,10 @@ Each seed saves to its own folder: `checkpoints/seed_{seed}/`
 
 ## Failure Cases
 
-- **Hairline cracks missed** — CLIPSeg's internal 64×64 resolution loses very fine structures
-- **Taping under-segmented** — subtle joints with no visible texture are hard to localise
-- **Bounding box noise** — both datasets had boxes not pixel masks, introducing label noise
-- **High-res downsampling** — Dataset 2 is 2560×1440 originally; resizing loses fine detail
+- **Hairline cracks missed** - CLIPSeg's internal 64×64 resolution loses very fine structures
+- **Taping under-segmented** - subtle joints with no visible texture are hard to localise
+- **Bounding box noise** - both datasets had boxes not pixel masks, introducing label noise
+- **High-res downsampling** - Dataset 2 is 2560×1440 originally; resizing loses fine detail
 
 ---
 
