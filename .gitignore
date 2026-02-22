@@ -1,0 +1,19 @@
+# Data — too large for GitHub
+data/
+checkpoints/
+predictions/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
