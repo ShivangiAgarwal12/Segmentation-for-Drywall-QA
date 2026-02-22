@@ -37,7 +37,7 @@ on the drywall datasets.
 | Optimizer | AdamW (lr=1e-4, wd=1e-4) |
 | Scheduler | CosineAnnealingLR |
 | Image size | 352 × 352 |
-| Epochs | 10 |
+| Epochs | 20 |
 | Batch size | 16 |
 | Seeds | 42, 123, 7 |
 
@@ -104,6 +104,9 @@ drywall-qa/
 ├── visualize.py       # Training curves + visual examples
 ├── requirements.txt
 └── .gitignore
+Colab Notebook
+└── Origin_segmentation.ipynb #File to download data, results saved post each cell
+└── Drywall_QA.ipynb #Loads data, trains for 3 seeds, evaluates dataset also
 ```
 
 ---
@@ -153,10 +156,9 @@ python main.py
 
 ## Running in Google Colab
 
-This project was trained on **Google Colab (NVIDIA T4 GPU)**. To use the scripts
-inside Colab:
+This project was trained on **Google Colab (NVIDIA T4 GPU)**. 
 
-```python
+<!-- ```python
 import sys
 sys.path.append('/content/drive/MyDrive/drywall-qa')
 
@@ -164,14 +166,14 @@ from config import *
 from train import train_one_seed
 from evaluate import evaluate, print_results
 # etc.
-```
+``` -->
 
-Or run the full pipeline:
+<!-- Or run the full pipeline:
 ```python
 exec(open('/content/drive/MyDrive/drywall-qa/main.py').read())
 ```
 
----
+--- -->
 
 ## Resuming After a Crash
 
@@ -208,8 +210,8 @@ Each seed saves to its own folder: `checkpoints/seed_{seed}/`
 | Metric | Value |
 |--------|-------|
 | Training device | NVIDIA T4 (Google Colab) |
-| Training time per seed | ~35–40 minutes |
-| Total training (3 seeds) | ~110 minutes |
+| Training time per seed | ~1 hour |
+| Total training (3 seeds) | ~3 hours |
 | Avg inference time/image | ~0.18 seconds |
 | Checkpoint size | ~45 MB (decoder only) |
 
