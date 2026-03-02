@@ -35,7 +35,7 @@ class DrywallDataset(Dataset):
             (d2_imgs, d2_masks, 'crack')
         ]:
             if not os.path.exists(imgs_dir):
-                print(f"⚠️  Missing: {imgs_dir}")
+                print(f"Missing: {imgs_dir}")
                 continue
             for img_file in os.listdir(imgs_dir):
                 if not img_file.lower().endswith(('.jpg', '.jpeg', '.png')):
